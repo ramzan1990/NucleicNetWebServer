@@ -6,4 +6,4 @@ services:
             dockerfile: app.docker
         runtime: nvidia
         ports:
-            - "8080:80"
+            - "8888:80"

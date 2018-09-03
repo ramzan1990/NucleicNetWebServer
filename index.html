@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PromFind</title>
+    <meta charset="UTF-8">
+    <title>NucleicNet</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
@@ -19,8 +20,9 @@ code{background:#F8F8FF; color: black; padding:6px}
         </div>
 
         <div  id="form1">        	
-            <a href="information.html#requirement"> Input Sequence Requirements </a>    &nbsp;&nbsp;&nbsp;    <a href="information.html#format"> Input File Format </a>    &nbsp;&nbsp;&nbsp;     <a href="information.html#sample"> Sample Input </a>
+            <!--  <a href="information.html#requirement"> Input Sequence Requirements </a>    &nbsp;&nbsp;&nbsp;    <a href="information.html#format"> Input File Format </a>    &nbsp;&nbsp;&nbsp;     <a href="information.html#sample"> Sample Input </a> 
             <br />
+            -->            
             <form id="formv" class="forHistory"  enctype="multipart/form-data">
 
                 <br />
@@ -60,17 +62,7 @@ code{background:#F8F8FF; color: black; padding:6px}
            <br />
 
 <textarea id="lref" style="position: absolute;top: -9999px;left: -9999px;">
-@article{deepre2017,
-author = {Li, Yu and Wang, Sheng and Umarov, Ramzan and Xie, Bingqing and Fan, Ming and Li, Lihua and Gao, Xin},
-title = {DEEPre: sequence-based enzyme EC number prediction by deep learning},
-journal = {Bioinformatics},
-volume = {},
-number = {},
-pages = {btx680},
-year = {2017},
-doi = {10.1093/bioinformatics/btx680},
-URL = { + http://dx.doi.org/10.1093/bioinformatics/btx680}
-} 
+bibtex item 
 </textarea>
   
         </div>
@@ -101,24 +93,14 @@ URL = { + http://dx.doi.org/10.1093/bioinformatics/btx680}
             function validateForm(form) {
                 if($("#inputFile").val() == ''){                	
                     seq = $("#sequence").val().toUpperCase();
-                    seq = seq.replace(/^.*>.*$/mg, "");
-                    seq = seq.replace(/\s/g, "");
-                    if(seq.length <50 || seq.length > 5000){
-                        alert("Sequence length should be between 50 and 5000.");
-                        return false;
-                    }
-                    if(! (/^[ACDEFGHIKLMNPQRSTUVWY\s]+$/i.test(seq))){
-                        alert("Not a valid sequence. Please input sequence only contains the 20 AA letters.");
-                        return false;
-                    }
                     $('#sequence').val(seq);
                 }
                 $("#form1").hide();
                 $("#rm1").show();
-                $.ajax({
+                $.ajax({ 
     url: 'result.php',
     data: new FormData(form),
-    cache: false,
+    cache: false, 
     contentType: false,
     processData: false,
     method: 'POST'
