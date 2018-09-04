@@ -104,14 +104,53 @@ RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp1
 RUN cp -a temp1/. /var/www/html/
 RUN rm -rf temp1
 
+# Nucleic net setup
+############################################################################################
+RUN git clone https://ramzan1990:18779898aA!@github.com/lykaust15/NucleicNet temp3
+RUN cp -a temp3/. /var/www/html/NucleicNet
+RUN rm -rf temp3
+
+#Feature3 setup
+RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/feature-3.1.0 && make && make install
+ENV PDB_DIR=/usr/local/feature/data/pdb
+ENV DSSP_DIR=/usr/local/feature/data/dssp
+ENV FEATURE_DIR=/usr/local/feature/data
+ENV PYTHONPATR=SPYTRUNPATH:/usr/local/feature/tools/lib 
+
+#dssp
+RUN chmod 777 /var/www/html/NucleicNet/utils/dssp
+ENV PATH /var/www/html/NucleicNet/utils/dssp:${PATH}
+
+#graphviz
+RUN apt install -y python-pydot python-pydot-ng graphviz
+
+#Anaconda setup
+ENV PATH /opt/conda/bin:$PATH
+RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
+libglib2.0-0 libxext6 libsm6 libxrender1 \
+git mercurial subversion
+
+RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O ~/anaconda.sh && \ 
+/bin/bash ~/anaconda.sh -b -p /opt/conda && \
+rm ~/anaconda.sh && \
+ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+echo "conda activate base" >> ~/.bashrc
+
+RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/DL/src_productive && conda env create -f environment.yml
+RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && conda env create -f py3_env.yml
+
+############################################################################################
+
+
 RUN chown -R www-data:www-data /var/www
 RUN chmod 755 -R /var/www
 RUN chgrp -R www-data /var/www
 RUN find /var/www -type d -exec chmod 775 {} +
 RUN find /var/www -type f -exec chmod 664 {} +
 
-RUN chmod 755 /var/www/html/PromID/main.sh
-RUN chmod 777 /var/www/html/PromID/files/
+#RUN chmod 755 /var/www/html/PromID/main.sh
+#RUN chmod 777 /var/www/html/PromID/files/
 
 EXPOSE 80
 
