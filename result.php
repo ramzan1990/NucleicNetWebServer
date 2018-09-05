@@ -1,6 +1,6 @@
 <?php
     move_uploaded_file($_FILES['file']['tmp_name'], 'NucleicNet/protein_RNA_interaction_package/GridData/' . time() . '.pdb');
-    putenv("PATH=/usr/local/cuda/bin:/usr/local/cuda-8.0/bin:/usr/local/cuda-9.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/conda/bin");
+    putenv("PATH=/usr/local/cuda/bin:/usr/local/cuda-8.0/bin:/usr/local/cuda-9.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/conda/bin:/var/www/html/NucleicNet/utils/dssp");
     putenv("LD_LIBRARY_PATH=/usr/local/cuda/lib64");
 
     $data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash commandNAGenerateBlindGrid.sh' . " 2>&1");
