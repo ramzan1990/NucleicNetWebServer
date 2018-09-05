@@ -6,4 +6,8 @@
     $needle = "This is the final result!!";
     
     echo $data;
+
+    $dir    = 'NucleicNet/protein_RNA_interaction_package/Out';
+	$files1 = scandir($dir);
+	print_r($files1);
 ?>
