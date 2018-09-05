@@ -1,18 +1,18 @@
 <?php
     move_uploaded_file($_FILES['file']['tmp_name'], 'NucleicNet/protein_RNA_interaction_package/GridData/' . time() . '.pdb');
-    putenv("PATH=/usr/local/cuda/bin:/usr/local/cuda-8.0/bin:/usr/local/cuda-9.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:");
+    putenv("PATH=/usr/local/cuda/bin:/usr/local/cuda-8.0/bin:/usr/local/cuda-9.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/conda/bin");
     putenv("LD_LIBRARY_PATH=/usr/local/cuda/lib64");
 
     $data = shell_exec ( 'bash NucleicNet/protein_RNA_interaction_package/commandNAGenerateBlindGrid.sh' . " 2>&1");
-    echo '-----------------------------------------------------------------------------------------------------------------';
+    echo '-----------------------------------------------------------------------------------------------------------------<br />';
     echo nl2br($data);
 	$data = shell_exec ( 'bash NucleicNet/protein_RNA_interaction_package/dl_prediction.sh' . " 2>&1");
-	echo '-----------------------------------------------------------------------------------------------------------------';
+	echo '-----------------------------------------------------------------------------------------------------------------<br />';
 	echo nl2br($data);
 	$data = shell_exec ( 'bash NucleicNet/protein_RNA_interaction_package/commandNAAnalyseGridPrediction.sh' . " 2>&1");
-	echo '-----------------------------------------------------------------------------------------------------------------';
+	echo '-----------------------------------------------------------------------------------------------------------------<br />';
 	echo nl2br($data);
-    echo '-----------------------------------------------------------------------------------------------------------------';
+    echo '-----------------------------------------------------------------------------------------------------------------<br />';
     $dir    = 'NucleicNet/protein_RNA_interaction_package/Out';
 	$files1 = scandir($dir);
 	print_r($files1);
