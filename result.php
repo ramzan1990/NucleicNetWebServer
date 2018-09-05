@@ -7,9 +7,12 @@
     
     echo $data;
 
-    shell_exec ( 'bash NucleicNet/protein_RNA_interaction_package/commandNAGenerateBlindGrid.sh');
-	shell_exec ( 'bash NucleicNet/protein_RNA_interaction_package/dl_prediction.sh');
-	shell_exec ( 'bash NucleicNet/protein_RNA_interaction_package/commandNAAnalyseGridPrediction.sh');
+    $data = shell_exec ( 'bash NucleicNet/protein_RNA_interaction_package/commandNAGenerateBlindGrid.sh' . " 2>&1");
+    echo $data;
+	$data = shell_exec ( 'bash NucleicNet/protein_RNA_interaction_package/dl_prediction.sh' . " 2>&1");
+	echo $data;
+	$data = shell_exec ( 'bash NucleicNet/protein_RNA_interaction_package/commandNAAnalyseGridPrediction.sh' . " 2>&1");
+	echo $data;
 
     $dir    = 'NucleicNet/protein_RNA_interaction_package/Out';
 	$files1 = scandir($dir);
