@@ -100,15 +100,11 @@ RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/Allo
 # RUN echo "ServerTokens Prod\n" >> /etc/apache2/apache2.conf
 # RUN echo "ServerSignature Off\n" >> /etc/apache2/apache2.conf
 
-RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp1
-RUN cp -a temp1/. /var/www/html/
-RUN rm -rf temp1
-
 # Nucleic net setup
 ############################################################################################
-RUN git clone https://ramzan1990:18779898aA!@github.com/lykaust15/NucleicNet temp3
-RUN cp -a temp3/. /var/www/html/NucleicNet
-RUN rm -rf temp3
+RUN git clone https://ramzan1990:18779898aA!@github.com/lykaust15/NucleicNet temp5
+RUN cp -a temp5/. /var/www/html/NucleicNet
+RUN rm -rf temp5
 
 #Feature3 setup
 RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/feature-3.1.0 && make && make install
@@ -137,11 +133,19 @@ ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
 echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
 echo "conda activate base" >> ~/.bashrc
 
+RUN conda update -n base conda
+
 RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/DL/src_productive && conda env create -f environment.yml
+
+RUN pip install prody==1.10.6
+
 RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && conda env create -f py3_env.yml
 
 ############################################################################################
 
+RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp2
+RUN cp -a temp2/. /var/www/html/
+RUN rm -rf temp2
 
 RUN chown -R www-data:www-data /var/www
 RUN chmod 755 -R /var/www
