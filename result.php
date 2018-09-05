@@ -10,4 +10,8 @@
     $dir    = 'NucleicNet/protein_RNA_interaction_package/Out';
 	$files1 = scandir($dir);
 	print_r($files1);
+
+	$dir    = 'NucleicNet/protein_RNA_interaction_package/GridData';
+	$files1 = scandir($dir);
+	print_r($files1);
 ?>

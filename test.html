@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+    <title>A simple Jsmol example</title>
+<head>
+    
+</head>
+<body>
+  <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
+    <script type="text/javascript">
+    var Info = {
+      width: 500,
+      height: 500,
+      j2sPath: "jsmol/j2s",
+    }
+    </script>
+    <script type="text/javascript">
+      jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
+      Jmol.script(jmolApplet0,"background white; load 123.xyz; color atoms TRANSLUCENT 0.8; spacefill #alt:SETTING van der Waals Spheres;")
+    </script>
+   
+</body>
