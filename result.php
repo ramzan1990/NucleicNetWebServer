@@ -13,11 +13,18 @@
 	echo '-----------------------------------------------------------------------------------------------------------------<br />';
 	echo nl2br($data);
     echo '-----------------------------------------------------------------------------------------------------------------<br />';
+    echo 'Out<br />'
     $dir    = 'NucleicNet/protein_RNA_interaction_package/Out';
 	$files1 = scandir($dir);
 	print_r($files1);
-
+    echo '-----------------------------------------------------------------------------------------------------------------<br />';
+    echo 'GridData<br />'
 	$dir    = 'NucleicNet/protein_RNA_interaction_package/GridData';
+	$files1 = scandir($dir);
+	print_r($files1);
+	echo '-----------------------------------------------------------------------------------------------------------------<br />';
+	echo 'DL_output<br />'
+	$dir    = 'NucleicNet/protein_RNA_interaction_package/DL_output';
 	$files1 = scandir($dir);
 	print_r($files1);
 ?>
