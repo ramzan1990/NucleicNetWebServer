@@ -27,7 +27,7 @@ dependencies:
   - networkx==2.1
 #  - numba==0.39.0
   - numpy==1.13.3
-  - olefile==0.44
+#  - olefile==0.44
   - pandas==0.23.3
   - parmed==3.0.3
   - parso==0.1.0
