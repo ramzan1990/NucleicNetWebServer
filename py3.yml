@@ -14,7 +14,7 @@ dependencies:
 - xz=5.2.3=0
 - zlib=1.2.11=0
 - pip:
-  - prody==1.10.5
+  - prody==1.10.4
   - graphviz
   - backcall==0.1.0
   - biopandas==0.2.3
