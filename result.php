@@ -10,7 +10,7 @@
 	EmptyDir('NucleicNet/protein_RNA_interaction_package/GridData');
 	EmptyDir('NucleicNet/protein_RNA_interaction_package/Out');
 	EmptyDir('NucleicNet/protein_RNA_interaction_package/DL_output');
-	
+
     move_uploaded_file($_FILES['file']['tmp_name'], 'NucleicNet/protein_RNA_interaction_package/GridData/1111.pdb');
     putenv("PATH=/usr/local/cuda/bin:/usr/local/cuda-8.0/bin:/usr/local/cuda-9.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/conda/bin:/var/www/html/NucleicNet/utils/dssp");
     putenv("LD_LIBRARY_PATH=/usr/local/cuda/lib64");
@@ -21,7 +21,7 @@
 	$data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash dl_prediction.sh' . " 2>&1");
 	echo '-----------------------------------------------------------------------------------------------------------------<br />';
 	echo nl2br($data);
-	$data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash commandNAAnalyseGridPrediction.sh' . " 2>&1");
+	$data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash commandNAAnalyseGridPrediction_legacy.sh' . " 2>&1");
 	echo '-----------------------------------------------------------------------------------------------------------------<br />';
 	echo nl2br($data);
     echo '-----------------------------------------------------------------------------------------------------------------<br />';
