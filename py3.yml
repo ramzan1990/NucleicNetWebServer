@@ -14,6 +14,7 @@ dependencies:
 - xz=5.2.3=0
 - zlib=1.2.11=0
 - pip:
+  - graphviz
   - backcall==0.1.0
   - biopandas==0.2.3
   - biopython==1.72
