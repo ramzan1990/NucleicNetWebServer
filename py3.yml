@@ -14,8 +14,6 @@ dependencies:
 - xz=5.2.3=0
 - zlib=1.2.11=0
 - pip:
-  - prody
-  - graphviz
   - backcall==0.1.0
   - biopandas==0.2.3
   - biopython==1.72
@@ -59,3 +57,4 @@ dependencies:
   - traitlets==4.3.2
   - wcwidth==0.1.7
   - werkzeug==0.12.2
+
