@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>PromID</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.css" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css"> 
 </head>
 <body>
