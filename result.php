@@ -39,16 +39,11 @@
 	$dir    = 'NucleicNet/protein_RNA_interaction_package/DL_output';
 	$files1 = scandir($dir);
 	print_r($files1);
-	echo '<div id="viewport" style="width:600px; height:600px;"></div>'
-	echo '<script>
+	echo '<div id="viewport" style="width:600px; height:600px;"></div>';
+	$str = <<<MY_MARKER 
+	<script>
        // Create NGL Stage object
 var stage = new NGL.Stage( "viewport", {backgroundColor:"white"} );
-
-// Handle window resizing
-window.addEventListener( "resize", function( event ){
-    stage.handleResize();
-}, false );
-
 
 var schemeId = NGL.ColormakerRegistry.addScheme(function (params) {
   this.atomColor = function (atom) {
@@ -78,14 +73,14 @@ var white1 = NGL.ColormakerRegistry.addScheme(function (params) {
   };
 });
 
-stage.loadFile("4f3t.pdb").then(function (o) {
+stage.loadFile("NucleicNet/protein_RNA_interaction_package/Out/1111.pdb").then(function (o) {
   o.addRepresentation("ribbon", {
     color: white1
   })
   o.autoView()
 })
 
-stage.loadFile("1111.pdb").then(function (o) {
+stage.loadFile("NucleicNet/protein_RNA_interaction_package/Out/1111_strong_Bootstrap.pdb").then(function (o) {
   o.addRepresentation("surface", {
     color: schemeId,
     opacity:  0.5
@@ -94,4 +89,6 @@ stage.loadFile("1111.pdb").then(function (o) {
 })
 
     </script>'
+MY_MARKER;
+    echo $str;
 ?>
