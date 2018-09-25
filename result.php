@@ -40,7 +40,7 @@
 	$files1 = scandir($dir);
 	print_r($files1);
 	echo '<div id="viewport" style="width:600px; height:600px;"></div>';
-	$str = <<<MY_MARKER 
+	$str = <<<MY_MARKER
 	<script>
        // Create NGL Stage object
 var stage = new NGL.Stage( "viewport", {backgroundColor:"white"} );
