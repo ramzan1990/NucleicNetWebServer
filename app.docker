@@ -149,15 +149,6 @@ RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && conda env cr
 
 ############################################################################################
 
-RUN chown -R www-data:www-data /var/www
-RUN chmod 755 -R /var/www
-RUN chgrp -R www-data /var/www
-#RUN find /var/www -type d -exec chmod 775 {} +
-#RUN find /var/www -type f -exec chmod 664 {} +
-
-#RUN chmod 755 /var/www/html/PromID/main.sh
-#RUN chmod 777 /var/www/html/PromID/files/
-
 ENV PYMOL_VERSION 2.1.0
 
 RUN wget --no-verbose https://sourceforge.net/projects/pymol/files/pymol/2/pymol-v${PYMOL_VERSION}.tar.bz2
@@ -174,16 +165,18 @@ ENV PATH="/pi/bin:${PATH}"
 
 RUN cp /pi/bin/* /bin
 
-RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp7
-RUN cp -a temp7/. /var/www/html/
-RUN rm -rf temp7
+RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp899
+RUN cp -a temp899/. /var/www/html/
+RUN rm -rf temp899
 
-RUN cp score.sh NucleicNet/protein_RNA_interaction_package/
+RUN cp /var/www/html/score.sh /var/www/html/NucleicNet/protein_RNA_interaction_package/
 
 RUN chmod 777 -R /var/www/html/files
-RUN conda info --envs
-WORKDIR /var/www
+RUN chown -R www-data:www-data /var/www
+RUN chmod 755 -R /var/www
+RUN chgrp -R www-data /var/www
 
+WORKDIR /var/www
 EXPOSE 80
 
 # start Apache2 on image start
