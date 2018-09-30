@@ -165,9 +165,9 @@ ENV PATH="/pi/bin:${PATH}"
 
 RUN cp /pi/bin/* /bin
 
-RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp8999
-RUN cp -a temp8999/. /var/www/html/
-RUN rm -rf temp8999
+RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp7999
+RUN cp -a temp7999/. /var/www/html/
+RUN rm -rf temp7999
 
 RUN cp /var/www/html/score.sh /var/www/html/NucleicNet/protein_RNA_interaction_package/
 
@@ -175,6 +175,8 @@ RUN chmod 777 -R /var/www/html/files
 RUN chown -R www-data:www-data /var/www
 RUN chmod 755 -R /var/www
 RUN chgrp -R www-data /var/www
+
+RUN echo "conda activate" >> ~/.bashrc
 
 WORKDIR /var/www
 EXPOSE 80

@@ -13,5 +13,6 @@ Pyle_DIR='/media/jhmlam/CAESAR/MessLab/Database-Nucleic3Dstructure/PyleRNAlibrar
 KnownSite_DIR='Control'
 RNAC_DIR='/home/jhmlam/MessLab/Project-NucleicBind/protein_RNA_interaction_package/RNACompete_data/'
 Working_DIR='GridData'
-conda activate /opt/conda/envs/py3
+#conda activate /opt/conda/envs/py3
+source activate /opt/conda/envs/py3
 python ${SCRIPT_HOME}/Nucleic-Bind_HMM_ScoreSomeSequences.py --PredictionFolder ${Prediction_DIR} --TestSequences $1 --Targetname ${Docking_Target_Pdb_DIR}

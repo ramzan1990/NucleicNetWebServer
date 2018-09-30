@@ -5,6 +5,6 @@
   $new_file = "files/" . $query_name .'.csv';
   $content = $_POST["sequence"];
   file_put_contents($new_file, $content);
-  $data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash score.sh '. $new_file . ' 2>&1');
+  $data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/;  ./score.sh '. $new_file . ' 2>&1');
   echo $data;
 ?>
