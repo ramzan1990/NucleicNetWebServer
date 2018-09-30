@@ -174,12 +174,12 @@ ENV PATH="/pi/bin:${PATH}"
 
 RUN cp /pi/bin/* /bin
 
-RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp4
-RUN cp -a temp4/. /var/www/html/
-RUN rm -rf temp4
+RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp5
+RUN cp -a temp5/. /var/www/html/
+RUN rm -rf temp5
 
 RUN chmod 777 -R /var/www/html/files
-
+RUN conda info --envs
 WORKDIR /var/www
 
 EXPOSE 80
