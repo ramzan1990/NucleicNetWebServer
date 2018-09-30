@@ -165,9 +165,9 @@ ENV PATH="/pi/bin:${PATH}"
 
 RUN cp /pi/bin/* /bin
 
-RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp12
-RUN cp -a temp12/. /var/www/html/
-RUN rm -rf temp12
+RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp123
+RUN cp -a temp123/. /var/www/html/
+RUN rm -rf temp123
 
 RUN cp /var/www/html/score.sh /var/www/html/NucleicNet/protein_RNA_interaction_package/
 
