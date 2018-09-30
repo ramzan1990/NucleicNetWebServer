@@ -174,9 +174,11 @@ ENV PATH="/pi/bin:${PATH}"
 
 RUN cp /pi/bin/* /bin
 
-RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp6
-RUN cp -a temp6/. /var/www/html/
-RUN rm -rf temp6
+RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp7
+RUN cp -a temp7/. /var/www/html/
+RUN rm -rf temp7
+
+RUN cp score.sh NucleicNet/protein_RNA_interaction_package/
 
 RUN chmod 777 -R /var/www/html/files
 RUN conda info --envs
