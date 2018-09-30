@@ -1,3 +1,4 @@
+#!/bin/bash
 SCRIPT_HOME='Scripts'                          # Hold Python scripts
 GRAND_DATAFRAME_NA='DataframeGrandProNuc.pvar' # Hold Derived info from Pdb
 Prediction_DIR='DL_output'        # Hold reformat pickled deep learning grid results
