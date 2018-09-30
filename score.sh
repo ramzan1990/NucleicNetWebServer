@@ -16,5 +16,5 @@ RNAC_DIR='/home/jhmlam/MessLab/Project-NucleicBind/protein_RNA_interaction_packa
 Working_DIR='GridData'
 whoami
 #conda activate /opt/conda/envs/py3
-#source activate py3
-#python ${SCRIPT_HOME}/Nucleic-Bind_HMM_ScoreSomeSequences.py --PredictionFolder ${Prediction_DIR} --TestSequences $1 --Targetname ${Docking_Target_Pdb_DIR}
+source activate py3
+python ${SCRIPT_HOME}/Nucleic-Bind_HMM_ScoreSomeSequences.py --PredictionFolder ${Prediction_DIR} --TestSequences $1 --Targetname ${Docking_Target_Pdb_DIR}
