@@ -36,6 +36,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     find /usr/local/cuda-9.0/lib64/ -type f -name 'lib*_static.a' -not -name 'libcudart_static.a' -delete && \
     rm /usr/lib/x86_64-linux-gnu/libcudnn_static_v7.a
 
+RUN pip install --upgrade pip
 RUN pip install setuptools
 RUN pip install ez_setup
 RUN pip install tensorflow-gpu==1.5
@@ -48,8 +49,6 @@ ENV TF_CUDA_COMPUTE_CAPABILITIES=3.5,5.2,6.0,6.1,7.0
 ENV TF_CUDA_VERSION=9.0
 ENV TF_CUDNN_VERSION=7
 
-
-WORKDIR /var/www
 ENV PATH="/usr/local/cuda/bin:${PATH}"
 ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 
@@ -100,22 +99,9 @@ RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/Allo
 # RUN echo "ServerTokens Prod\n" >> /etc/apache2/apache2.conf
 # RUN echo "ServerSignature Off\n" >> /etc/apache2/apache2.conf
 
+
 # Nucleic net setup
 ############################################################################################
-RUN git clone https://ramzan1990:18779898aA!@github.com/lykaust15/NucleicNet temp5
-RUN cp -a temp5/. /var/www/html/NucleicNet
-RUN rm -rf temp5
-
-#Feature3 setup
-RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/feature-3.1.0 && make && make install
-ENV PDB_DIR=/usr/local/feature/data/pdb
-ENV DSSP_DIR=/usr/local/feature/data/dssp
-ENV FEATURE_DIR=/usr/local/feature/data
-ENV PYTHONPATR=SPYTRUNPATH:/usr/local/feature/tools/lib 
-
-#dssp
-RUN chmod 777 /var/www/html/NucleicNet/utils/dssp
-ENV PATH /var/www/html/NucleicNet/utils/dssp:${PATH}
 
 #graphviz
 RUN apt install -y python-pydot python-pydot-ng graphviz
@@ -135,29 +121,67 @@ echo "conda activate base" >> ~/.bashrc
 
 RUN conda update -n base conda
 
+RUN conda update pip
+
+RUN pip install --upgrade pip
+
+RUN git clone https://ramzan1990:18779898aA!@github.com/lykaust15/NucleicNet temp111
+RUN cp -a temp111/. /var/www/html/NucleicNet
+RUN rm -rf temp111
+
+#Feature3 setup
+RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/feature-3.1.0 && make && make install
+ENV PDB_DIR=/usr/local/feature/data/pdb
+ENV DSSP_DIR=/usr/local/feature/data/dssp
+ENV FEATURE_DIR=/usr/local/feature/data
+ENV PYTHONPATR=SPYTRUNPATH:/usr/local/feature/tools/lib 
+
+#dssp
+RUN chmod 777 /var/www/html/NucleicNet/utils/dssp
+#ENV PATH /var/www/html/NucleicNet/utils/dssp:${PATH}
+RUN cp /var/www/html/NucleicNet/utils/dssp /bin/
+RUN cp /var/www/html/NucleicNet/utils/dssp /var/www/html/NucleicNet/protein_RNA_interaction_package
+RUN cp /var/www/html/NucleicNet/utils/dssp /var/www/html/NucleicNet/protein_RNA_interaction_package/Scripts
+RUN cp /var/www/html/NucleicNet/utils/dssp /var/www/html/NucleicNet/protein_RNA_interaction_package/GridData
+
 RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/DL/src_productive && conda env create -f environment.yml
-
-RUN pip install prody==1.10.6
-
-RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && conda env create -f py3_env.yml
+RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && conda env create -f py3.yml
 
 ############################################################################################
+
+RUN chown -R www-data:www-data /var/www
+RUN chmod 755 -R /var/www
+RUN chgrp -R www-data /var/www
+#RUN find /var/www -type d -exec chmod 775 {} +
+#RUN find /var/www -type f -exec chmod 664 {} +
+
+#RUN chmod 755 /var/www/html/PromID/main.sh
+#RUN chmod 777 /var/www/html/PromID/files/
+
+ENV PYMOL_VERSION 2.1.0
+
+RUN wget --no-verbose https://sourceforge.net/projects/pymol/files/pymol/2/pymol-v${PYMOL_VERSION}.tar.bz2
+RUN tar jxf pymol-v${PYMOL_VERSION}.tar.bz2
+RUN rm pymol-v* 
+
+RUN apt-get install -y freeglut3-dev libglew-dev mesa-common-dev
+RUN apt-get install -y python-tk
+RUN pip install pmw
+
+RUN cd pymol && python setup.py install --prefix=/pi
+
+ENV PATH="/pi/bin:${PATH}"
+
+RUN cp /pi/bin/* /bin
 
 RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp2
 RUN cp -a temp2/. /var/www/html/
 RUN rm -rf temp2
 
-RUN chown -R www-data:www-data /var/www
-RUN chmod 755 -R /var/www
-RUN chgrp -R www-data /var/www
-RUN find /var/www -type d -exec chmod 775 {} +
-RUN find /var/www -type f -exec chmod 664 {} +
-
-#RUN chmod 755 /var/www/html/PromID/main.sh
-#RUN chmod 777 /var/www/html/PromID/files/
+WORKDIR /var/www
 
 EXPOSE 80
 
 # start Apache2 on image start
-CMD ["/usr/sbin/apache2ctl","-DFOREGROUND"]
+CMD ["/usr/sbin/apache2ctl","-DFOREGROUND"] 
 
