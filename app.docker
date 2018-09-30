@@ -174,9 +174,9 @@ ENV PATH="/pi/bin:${PATH}"
 
 RUN cp /pi/bin/* /bin
 
-RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp2
-RUN cp -a temp2/. /var/www/html/
-RUN rm -rf temp2
+RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp3
+RUN cp -a temp3/. /var/www/html/
+RUN rm -rf temp3
 
 WORKDIR /var/www
 
