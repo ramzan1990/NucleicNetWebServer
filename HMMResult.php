@@ -12,9 +12,10 @@
       echo "<td>" . $seqs[$x] . "</td>";
       echo "<td>" . $scores[$x] . "</td>";
       echo "</tr>";
-      $dcsv = $seqs[$x] . "," . $scores[$x] . "\n";
+      $dcsv = $dcsv . $seqs[$x] . "," . $scores[$x] . "\n";
   }
   echo "</table>";
+  echo "<br /";
   $fname = "files/" . time().".csv";
   file_put_contents ($fname, $dcsv);
   echo "<a href='".$fname."'>Download CSV</a>";

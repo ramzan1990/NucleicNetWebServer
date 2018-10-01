@@ -169,9 +169,9 @@ RUN chown -R www-data:www-data /var/www
 RUN chmod 755 -R /var/www
 RUN chgrp -R www-data /var/www
 
-RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp17cc
-RUN cp -a temp17cc/. /var/www/html/
-RUN rm -rf temp17cc
+RUN git clone https://github.com/ramzan1990/NucleicNetWebServer temp17ccc
+RUN cp -a temp17ccc/. /var/www/html/
+RUN rm -rf temp17ccc
 
 RUN chmod 777 -R /var/www/html/files
 
