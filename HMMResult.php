@@ -5,12 +5,17 @@
   $seqs = explode(',', $content);  
   $data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash score.sh '. $content);
   $scores = explode(PHP_EOL, $data);
+  $dcsv = "";
   echo "<table><tr><th>Sequence</th><th>Score</th></tr>";
   for ($x = 0; $x < count($seqs); $x++) {
       echo "<tr>";
       echo "<td>" . $seqs[$x] . "</td>";
       echo "<td>" . $scores[$x] . "</td>";
       echo "</tr>";
+      $dcsv = $seqs[$x] . "," . $scores[$x] . "\n";
   }
   echo "</table>";
+  $fname = "files/" . time().".csv";
+  file_put_contents ($fname, $dcsv);
+  echo "<a href='".$fname."'>Download CSV</a>";
 ?>
