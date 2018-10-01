@@ -4,6 +4,7 @@
   $content = $_POST["sequence"];
   $seqs = explode(',', $content);  
   $data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash score.sh '. $content);
+  $data1 = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash score.sh '. $content . " 2>&1");
   $scores = explode(PHP_EOL, $data);
   $dcsv = "";
   echo "<table><tr><th>Sequence</th><th>Score</th></tr>";
@@ -19,4 +20,5 @@
   $fname = "files/" . time().".csv";
   file_put_contents ($fname, $dcsv);
   echo "<a href='".$fname."'>Download CSV</a>";
+  echo $data1;
 ?>
