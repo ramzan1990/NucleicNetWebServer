@@ -15,7 +15,7 @@
       $dcsv = $dcsv . $seqs[$x] . "," . $scores[$x] . "\n";
   }
   echo "</table>";
-  echo "<br /";
+  echo "<br />";
   $fname = "files/" . time().".csv";
   file_put_contents ($fname, $dcsv);
   echo "<a href='".$fname."'>Download CSV</a>";
