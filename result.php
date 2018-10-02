@@ -1,44 +1,46 @@
 <?php
 	function EmptyDir($dir) {
-	$handle=opendir($dir);
-	while (($file = readdir($handle))!==false) {
-	unlink($dir.'/'.$file);
-	}
-	closedir($handle);
+  	$handle=opendir($dir);
+  	while (($file = readdir($handle))!==false) {
+      if(is_file($dir.'/'.$file)){
+        unlink($dir.'/'.$file);
+      }
+  	}
+  	closedir($handle);
 	}
 
 	EmptyDir('NucleicNet/protein_RNA_interaction_package/GridData');
 	EmptyDir('NucleicNet/protein_RNA_interaction_package/Out');
 	EmptyDir('NucleicNet/protein_RNA_interaction_package/DL_output');
 
-    move_uploaded_file($_FILES['file']['tmp_name'], 'NucleicNet/protein_RNA_interaction_package/GridData/1111.pdb');
-    putenv("PATH=/usr/local/cuda/bin:/usr/local/cuda-8.0/bin:/usr/local/cuda-9.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/conda/bin:/var/www/html/NucleicNet/utils/dssp");
-    putenv("LD_LIBRARY_PATH=/usr/local/cuda/lib64");
+  move_uploaded_file($_FILES['file']['tmp_name'], 'NucleicNet/protein_RNA_interaction_package/GridData/1111.pdb');
+  putenv("PATH=/usr/local/cuda/bin:/usr/local/cuda-8.0/bin:/usr/local/cuda-9.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/conda/bin:/var/www/html/NucleicNet/utils/dssp");
+  putenv("LD_LIBRARY_PATH=/usr/local/cuda/lib64");
 
-    $data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash commandNAGenerateBlindGrid.sh' . " 2>&1");
-    echo '-----------------------------------------------------------------------------------------------------------------<br />';
-    echo nl2br($data);
+  $data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash commandNAGenerateBlindGrid.sh' . " 2>&1");
+  #echo '-----------------------------------------------------------------------------------------------------------------<br />';
+  #echo nl2br($data);
 	$data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash dl_prediction.sh' . " 2>&1");
-	echo '-----------------------------------------------------------------------------------------------------------------<br />';
-	echo nl2br($data);
+	#echo '-----------------------------------------------------------------------------------------------------------------<br />';
+	#echo nl2br($data);
 	$data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash commandNAAnalyseGridPrediction_legacy.sh' . " 2>&1");
-	echo '-----------------------------------------------------------------------------------------------------------------<br />';
-	echo nl2br($data);
-    echo '-----------------------------------------------------------------------------------------------------------------<br />';
-    echo 'Out<br />';
-    $dir    = 'NucleicNet/protein_RNA_interaction_package/Out';
-	$files1 = scandir($dir);
-	print_r($files1);
-    echo '-----------------------------------------------------------------------------------------------------------------<br />';
-    echo 'GridData<br />';
-	$dir    = 'NucleicNet/protein_RNA_interaction_package/GridData';
-	$files1 = scandir($dir);
-	print_r($files1);
-	echo '-----------------------------------------------------------------------------------------------------------------<br />';
-	echo 'DL_output<br />';
-	$dir    = 'NucleicNet/protein_RNA_interaction_package/DL_output';
-	$files1 = scandir($dir);
-	print_r($files1);
+	#echo '-----------------------------------------------------------------------------------------------------------------<br />';
+	#echo nl2br($data);
+  #echo '-----------------------------------------------------------------------------------------------------------------<br />';
+  #echo 'Out<br />';
+  #$dir    = 'NucleicNet/protein_RNA_interaction_package/Out';
+	#$files1 = scandir($dir);
+	#print_r($files1);
+  #echo '-----------------------------------------------------------------------------------------------------------------<br />';
+  #echo 'GridData<br />';
+	#$dir    = 'NucleicNet/protein_RNA_interaction_package/GridData';
+	#$files1 = scandir($dir);
+	#print_r($files1);
+	#echo '-----------------------------------------------------------------------------------------------------------------<br />';
+	#echo 'DL_output<br />';
+	#$dir    = 'NucleicNet/protein_RNA_interaction_package/DL_output';
+	#$files1 = scandir($dir);
+	#print_r($files1);
 	echo '<div id="viewport" style="width:600px; height:600px;"></div>';
 	$str = <<<MY_MARKER
 	<script src="js/ngl.js"></script>
@@ -92,4 +94,7 @@ stage.loadFile("NucleicNet/protein_RNA_interaction_package/Out/1111_strong_Boots
     </script>'
 MY_MARKER;
     echo $str;
+    echo "<br />";
+    echo "<br />";
+    echo "<a href='". "NucleicNet/protein_RNA_interaction_package/Out/1111_pymol.pse" ."'>Download PSE</a>";
 ?>
