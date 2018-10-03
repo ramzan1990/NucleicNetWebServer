@@ -85,6 +85,8 @@ stage.loadFile("NucleicNet/protein_RNA_interaction_package/Out/1111.pdb").then(f
 
 stage.loadFile("NucleicNet/protein_RNA_interaction_package/Out/1111_strong_Bootstrap.pdb").then(function (o) {
   o.addRepresentation("surface", {
+    isolevel: 0.002,
+    isolevelType: "value",
     color: schemeId,
     opacity:  0.5
   })
