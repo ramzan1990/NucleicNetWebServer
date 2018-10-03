@@ -46,7 +46,7 @@
 	<script src="js/ngl.js"></script>
 	<script>
        // Create NGL Stage object
-var stage = new NGL.Stage( "viewport", {backgroundColor:"white"} );
+var stage = new NGL.Stage( "viewport", {backgroundColor:"black"} );
 
 var schemeId = NGL.ColormakerRegistry.addScheme(function (params) {
   this.atomColor = function (atom) {
