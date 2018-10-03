@@ -3,7 +3,9 @@
   putenv("LD_LIBRARY_PATH=/usr/local/cuda/lib64");
   $content = $_POST["sequence"];
   $seqs = explode(',', $content);  
-  $data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash score.sh '. implode(",", $seqs));
+  $new_content = preg_replace('/\s+/', '', implode(",", $seqs));
+  $data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash score.sh '. $new_content);
+  echo $new_content;
   #$data1 = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash score.sh '. $content . " 2>&1");
   $scores = explode(PHP_EOL, $data);
   $dcsv = "";
