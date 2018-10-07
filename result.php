@@ -77,14 +77,14 @@ function render(rad, opacity, scale, smooth, bg){
     };
   });
 
-  stage.loadFile("1111.pdb").then(function (o) {
+  stage.loadFile("NucleicNet/protein_RNA_interaction_package/Out/1111.pdb").then(function (o) {
     o.addRepresentation("ribbon", {
       color: white1
     })
     o.autoView()
   })
 
-  stage.loadFile("1111_strong_Bootstrap.pdb").then(function (o) {
+  stage.loadFile("NucleicNet/protein_RNA_interaction_package/Out/1111_strong_Bootstrap.pdb").then(function (o) {
     o.addRepresentation("surface", {
       probeRadius: rad,
       smooth: smooth,
