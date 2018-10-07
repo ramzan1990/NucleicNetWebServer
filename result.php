@@ -43,7 +43,7 @@
 	#print_r($files1);
 	echo '<div id="viewport" style="width:600px; height:600px;"></div>';
 	$str = <<<MY_MARKER
-  <script src="ngl.js"></script>
+  <script src="js/ngl.js"></script>
   <script>
       
 function render(rad, opacity, scale, smooth, bg){
