@@ -100,10 +100,10 @@ function render(rad, opacity, scale, smooth, bg){
 }
 function setParams(){
   document.getElementById("viewport").innerHTML = "";
-  var rad = parseInt(document.getElementById("radius").value);
-  var opacity = parseInt(document.getElementById("opacity").value);
-  var scale = parseInt(document.getElementById("scale").value);
-  var smooth = parseInt(document.getElementById("smooth").value);
+  var rad = parseFloat(document.getElementById("radius").value);
+  var opacity = parseFloat(document.getElementById("opacity").value);
+  var scale = parseFloat(document.getElementById("scale").value);
+  var smooth = parseFloat(document.getElementById("smooth").value);
   var bg = document.getElementById("color").value;
   render(rad, opacity, scale, smooth, bg);
 }
