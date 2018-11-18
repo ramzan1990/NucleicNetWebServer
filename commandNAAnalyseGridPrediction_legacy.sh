@@ -47,7 +47,7 @@ done
 date
 
 # 2. Process the files into Visualisable forms
-for i in GridData/*.pdb
+for i in $1/GridData/*.pdb
 do
 j=$(echo ${i} | sed 's/GridData\///g' | sed 's/.pdb//g')
 python ${SCRIPT_HOME}/Nucleic-Bind_VisualisationProcessing.py --Pdbid ${j} --OutputFolder ${Pharm_Output_DIR} --ApoFolder ${Working_DIR}
@@ -58,7 +58,6 @@ date
 # ====================
 # For Argonaute only
 # ====================
-
 
 
 
