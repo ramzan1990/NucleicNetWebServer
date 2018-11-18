@@ -22,8 +22,10 @@ function tempdir($dir=NULL,$prefix=NULL) {
     putenv("PATH=/usr/local/cuda/bin:/usr/local/cuda-8.0/bin:/usr/local/cuda-9.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/conda/bin:/var/www/html/NucleicNet/utils/dssp");
     putenv("LD_LIBRARY_PATH=/usr/local/cuda/lib64");
 
+$gd = $tempdir . "/GridData";
+echo $gd;
     $data = 
-    shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash commandNAGenerateBlindGrid.sh $tempdir' . "/GridData 2>&1");
+    shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash commandNAGenerateBlindGrid.sh $gd 2>&1');
     echo '-----------------------------------------------------------------------------------------------------------------<br />';
     echo nl2br($data);
   $data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash dl_prediction.sh $tempdir' . " 2>&1");

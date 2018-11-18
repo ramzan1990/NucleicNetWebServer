@@ -172,9 +172,9 @@ RUN chown -R www-data:www-data /var/www
 RUN chmod 755 -R /var/www
 RUN chgrp -R www-data /var/www
 
-RUN git clone https://github.com/ramzan1990/NucleicNetWebServer tz1112
-RUN cp -a tz1112/. /var/www/html/
-RUN rm -rf tz1112
+RUN git clone https://github.com/ramzan1990/NucleicNetWebServer tz3112
+RUN cp -a tz3112/. /var/www/html/
+RUN rm -rf tz3112
 
 RUN mkdir /var/www/html/NucleicNet/protein_RNA_interaction_package/HMM_scoring
 RUN cp /var/www/html/4f3t_HMM_Model.pickle /var/www/html/NucleicNet/protein_RNA_interaction_package/HMM_scoring
