@@ -175,9 +175,9 @@ RUN chown -R www-data:www-data /var/www
 RUN chmod 755 -R /var/www
 RUN chgrp -R www-data /var/www
 
-RUN git clone https://github.com/ramzan1990/NucleicNetWebServer tzzzzzzzzzz
-RUN cp -a tzzzzzzzzzz/. /var/www/html/
-RUN rm -rf tzzzzzzzzzz
+RUN git clone https://github.com/ramzan1990/NucleicNetWebServer tzzzzzzzzzzzzz
+RUN cp -a tzzzzzzzzzzzzz/. /var/www/html/
+RUN rm -rf tzzzzzzzzzzzzz
 
 RUN mkdir /var/www/html/NucleicNet/protein_RNA_interaction_package/HMM_scoring
 RUN cp /var/www/html/4f3t_HMM_Model.pickle /var/www/html/NucleicNet/protein_RNA_interaction_package/HMM_scoring
@@ -189,11 +189,12 @@ RUN cp /var/www/html/score.sh /var/www/html/NucleicNet/protein_RNA_interaction_p
 RUN chmod 777 /var/www/html/NucleicNet/protein_RNA_interaction_package/score.sh
 
 RUN chmod 777 -R /var/www/html/NucleicNet/protein_RNA_interaction_package/webruns
-RUN echo "2"
-RUN cd /opt/conda/envs/py3/ && ls
-RUN conda env list
-RUN bash /var/www/html/pr.sh
+RUN echo "3"
+RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && sed -i 's/source activate py3/source activate py3\n pip install --user prody \n pip3 install --user prody /g' commandNAAnalyseGridPrediction_legacy.sh
 
+RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && sed -i "s/Pharm_Output_DIR='Out'/Pharm_Output_DIR=\$3/g" commandNAAnalyseGridPrediction_legacy.sh
+
+#RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && cat commandNAAnalyseGridPrediction_legacy.sh
 
 WORKDIR /var/www
 EXPOSE 80
