@@ -38,7 +38,7 @@ source activate py3
 # What if we just choose a percentile out of the probability calculated from DL?
 for i in $1/GridData/*.pdb 
 do
-j=$(echo ${i} | sed "s/$1/GridData\///g" | sed 's/.pdb//g')
+j=$(echo ${i} | sed "s@$1/GridData/@@g" | sed 's@.pdb@@g')
 echo $j
 echo "---------------------------------------------"
 echo ${Pharm_Output_DIR}
@@ -52,7 +52,7 @@ date
 # 2. Process the files into Visualisable forms
 for i in $1/GridData/*.pdb
 do
-j=$(echo ${i} | sed "s/$1/GridData\///g" | sed 's/.pdb//g')
+j=$(echo ${i} | sed "s@$1/GridData/@@g" | sed 's@.pdb@@g')
 echo $j
 echo "---------------------------------------------"
 echo ${Pharm_Output_DIR}
