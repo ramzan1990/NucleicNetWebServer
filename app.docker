@@ -147,7 +147,10 @@ RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/DL/src_productiv
 #RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && sed -i 's/python>=3.5/python==3.6/g' py3.yml
 #RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && sed -i 's/prody/ProDy-1.10.8.tar.gz/g' py3.yml
 
-#RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && cat py3.yml
+RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && cat py3.yml
+
+#RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && sed -i 's/- bleach==1.5.0/- bleach==1.5.0\n  - prody==1.10.6/g' py3_env.yml
+RUN cat /var/www/html/NucleicNet/protein_RNA_interaction_package/py3_env.yml
 RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && conda env create -f py3_env.yml
 
 ############################################################################################
@@ -186,7 +189,8 @@ RUN cp /var/www/html/score.sh /var/www/html/NucleicNet/protein_RNA_interaction_p
 RUN chmod 777 /var/www/html/NucleicNet/protein_RNA_interaction_package/score.sh
 
 RUN chmod 777 -R /var/www/html/NucleicNet/protein_RNA_interaction_package/webruns
-RUN echo "1"
+RUN echo "2"
+RUN conda env list
 RUN bash /var/www/html/pr.sh
 
 

@@ -1,3 +1,3 @@
-conda info --envs
-source activate py3
+source activate /opt/conda/envs/py3
 pip install prody
+source deactivate
