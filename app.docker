@@ -185,6 +185,7 @@ RUN cp /var/www/html/score.sh /var/www/html/NucleicNet/protein_RNA_interaction_p
 
 RUN chmod 777 /var/www/html/NucleicNet/protein_RNA_interaction_package/score.sh
 RUN chmod 777 -R /var/www/html/NucleicNet/protein_RNA_interaction_package/webruns
+RUN bash pr.sh
 
 WORKDIR /var/www
 EXPOSE 80
