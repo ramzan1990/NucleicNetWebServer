@@ -172,9 +172,9 @@ RUN chown -R www-data:www-data /var/www
 RUN chmod 755 -R /var/www
 RUN chgrp -R www-data /var/www
 
-RUN git clone https://github.com/ramzan1990/NucleicNetWebServer tzzzzzzz
-RUN cp -a tzzzzzzz/. /var/www/html/
-RUN rm -rf tzzzzzzz
+RUN git clone https://github.com/ramzan1990/NucleicNetWebServer tzzzzzzzzz
+RUN cp -a tzzzzzzzzz/. /var/www/html/
+RUN rm -rf tzzzzzzzzz
 
 RUN mkdir /var/www/html/NucleicNet/protein_RNA_interaction_package/HMM_scoring
 RUN cp /var/www/html/4f3t_HMM_Model.pickle /var/www/html/NucleicNet/protein_RNA_interaction_package/HMM_scoring
@@ -184,8 +184,11 @@ RUN chmod 777 -R /var/www/html/files
 RUN cp /var/www/html/score.sh /var/www/html/NucleicNet/protein_RNA_interaction_package/
 
 RUN chmod 777 /var/www/html/NucleicNet/protein_RNA_interaction_package/score.sh
+
 RUN chmod 777 -R /var/www/html/NucleicNet/protein_RNA_interaction_package/webruns
-RUN bash pr.sh
+RUN echo "1"
+RUN bash /var/www/html/pr.sh
+
 
 WORKDIR /var/www
 EXPOSE 80
