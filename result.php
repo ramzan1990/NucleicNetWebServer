@@ -17,23 +17,21 @@ function tempdir($dir=NULL,$prefix=NULL) {
     mkdir($tempdir . '/Out',0777);
     mkdir($tempdir . '/DL_output',0777);
     mkdir($tempdir . '/DL',0777);
-    shell_exec('cp -a NucleicNet/protein_RNA_interaction_package/DL $tempdir');
+    shell_exec("cp -a NucleicNet/protein_RNA_interaction_package/DL $tempdir");
 
     move_uploaded_file($_FILES['file']['tmp_name'], 'NucleicNet/protein_RNA_interaction_package/GridData/1111.pdb');
     putenv("PATH=/usr/local/cuda/bin:/usr/local/cuda-8.0/bin:/usr/local/cuda-9.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/conda/bin:/var/www/html/NucleicNet/utils/dssp");
     putenv("LD_LIBRARY_PATH=/usr/local/cuda/lib64");
 
 $gd = $tempdir . "/GridData";
-echo $gd;
     $data = 
-    shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash commandNAGenerateBlindGrid.sh $gd 2>&1');
+    shell_exec ( "cd NucleicNet/protein_RNA_interaction_package/; bash commandNAGenerateBlindGrid.sh $gd 2>&1");
     echo '-----------------------------------------------------------------------------------------------------------------<br />';
     echo nl2br($data);
-echo 'cd NucleicNet/protein_RNA_interaction_package/; bash dl_prediction.sh $tempdir' . " 2>&1";
-  $data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash dl_prediction.sh $tempdir' . " 2>&1");
+  $data = shell_exec ( "cd NucleicNet/protein_RNA_interaction_package/; bash dl_prediction.sh $tempdir 2>&1");
   echo '-----------------------------------------------------------------------------------------------------------------<br />';
   echo nl2br($data);
-  $data = shell_exec ( 'cd NucleicNet/protein_RNA_interaction_package/; bash commandNAAnalyseGridPrediction_legacy.sh $tempdir/Out $tempdir/DL_output' . " 2>&1");
+  $data = shell_exec ( "cd NucleicNet/protein_RNA_interaction_package/; bash commandNAAnalyseGridPrediction_legacy.sh {$tempdir}/Out {$tempdir}/DL_output 2>&1");
   echo '-----------------------------------------------------------------------------------------------------------------<br />';
   echo nl2br($data);
     echo '-----------------------------------------------------------------------------------------------------------------<br />';
