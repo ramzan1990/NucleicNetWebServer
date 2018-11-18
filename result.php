@@ -126,5 +126,5 @@ MY_MARKER;
     echo $str;
     echo "<br />";
     echo "<br />";
-    echo "<a href='". "NucleicNet/protein_RNA_interaction_package/Out/1111_pymol.pse" ."'>Download PSE</a>";
+    echo "<a href='". "NucleicNet/protein_RNA_interaction_package/$tempdir/Out/1111_pymol.pse" ."'>Download PSE</a>";
 ?>
