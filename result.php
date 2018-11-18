@@ -91,6 +91,6 @@ stage.loadFile("NucleicNet/protein_RNA_interaction_package/Out/1111_strong_Boots
 
     </script>'
 MY_MARKER;
-    $str = str_replace("Out/1111", "$tempdir/Out/1111", $str)
+    $str = str_replace("Out/1111", "$tempdir/Out/1111", $str);
     echo $str;
 ?>
