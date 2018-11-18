@@ -13,10 +13,10 @@ function tempdir($dir=NULL,$prefix=NULL) {
 
 
     $tempdir =  tempdir('NucleicNet/protein_RNA_interaction_package/webruns');
-    mkdir($tempdir . '/GridData',0777)
-    mkdir($tempdir . '/Out',0777)
-    mkdir($tempdir . '/DL_output',0777)
-    shell_exec('cp -a NucleicNet/protein_RNA_interaction_package/DL $tempdir')
+    mkdir($tempdir . '/GridData',0777);
+    mkdir($tempdir . '/Out',0777);
+    mkdir($tempdir . '/DL_output',0777);
+    shell_exec('cp -a NucleicNet/protein_RNA_interaction_package/DL $tempdir');
 
     move_uploaded_file($_FILES['file']['tmp_name'], 'NucleicNet/protein_RNA_interaction_package/GridData/1111.pdb');
     putenv("PATH=/usr/local/cuda/bin:/usr/local/cuda-8.0/bin:/usr/local/cuda-9.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/conda/bin:/var/www/html/NucleicNet/utils/dssp");
