@@ -194,7 +194,12 @@ RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && sed -i 's/so
 
 RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && sed -i "s/Pharm_Output_DIR='Out'/Pharm_Output_DIR=\$3/g" commandNAAnalyseGridPrediction_legacy.sh
 
-#RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && cat commandNAAnalyseGridPrediction_legacy.sh
+RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && sed -i '46i echo ${SCRIPT_HOME}/Nucleic-Bind_RigidDock_StrongGrid.py \
+    --RNAMerFolder ${RNA_Mer_Database_DIR} --TargetPdbFolder ${Docking_Target_Pdb_DIR} \
+    --PredictionFolder ${Prediction_DIR} --OutputFolder ${Pharm_Output_DIR} \
+    --Tolerance 3.00 --MaxDistance 30.0 --Pdbid ${j}\n' commandNAAnalyseGridPrediction_legacy.sh
+
+RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && cat commandNAAnalyseGridPrediction_legacy.sh
 
 WORKDIR /var/www
 EXPOSE 80

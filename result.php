@@ -34,7 +34,7 @@ $gd = $tempdir . "/GridData";
   echo '-----------------------------------------------------------------------------------------------------------------<br />';
   echo nl2br($data);
   echo "bash commandNAAnalyseGridPrediction_legacy.sh {$tempdir}/Out {$tempdir}/DL_output {$tempdir}/Out";
-  $data = shell_exec ( "cd NucleicNet/protein_RNA_interaction_package/; bash commandNAAnalyseGridPrediction_legacy.sh {$tempdir}/Out {$tempdir}/DL_output {$tempdir}/Out 2>&1");
+  $data = shell_exec ( "cd NucleicNet/protein_RNA_interaction_package/; bash commandNAAnalyseGridPrediction_legacy.sh {$tempdir} 2>&1");
   echo '-----------------------------------------------------------------------------------------------------------------<br />';
   echo nl2br($data);
     echo '-----------------------------------------------------------------------------------------------------------------<br />';
