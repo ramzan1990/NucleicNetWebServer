@@ -39,7 +39,7 @@ source activate py3
 for i in $1/GridData/*.pdb 
 do
 j=$(echo ${i} | sed 's/GridData\///g' | sed 's/.pdb//g')
-echo j
+echo $j
 echo "---------------------------------------------"
 echo ${Pharm_Output_DIR}
 python ${SCRIPT_HOME}/Nucleic-Bind_RigidDock_StrongGrid.py \
@@ -53,7 +53,7 @@ date
 for i in $1/GridData/*.pdb
 do
 j=$(echo ${i} | sed 's/GridData\///g' | sed 's/.pdb//g')
-echo j
+echo $j
 echo "---------------------------------------------"
 echo ${Pharm_Output_DIR}
 python ${SCRIPT_HOME}/Nucleic-Bind_VisualisationProcessing.py --Pdbid ${j} --OutputFolder ${Pharm_Output_DIR} --ApoFolder ${Working_DIR}
