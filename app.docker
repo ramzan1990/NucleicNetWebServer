@@ -124,34 +124,34 @@ RUN conda update pip
 RUN pip install --upgrade pip
 
 RUN git clone https://ramzan1990:18779898aA!@github.com/lykaust15/NucleicNet temp112
-RUN cp -a temp112/. /var/www/html/NucleicNet
+RUN cp -a temp112/. /var/www/html/NucleicNet/NucleicNet
 RUN rm -rf temp112
 
 #Feature3 setup
-RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/feature-3.1.0 && make && make install
+RUN cd /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/feature-3.1.0 && make && make install
 ENV PDB_DIR=/usr/local/feature/data/pdb
 ENV DSSP_DIR=/usr/local/feature/data/dssp
 ENV FEATURE_DIR=/usr/local/feature/data
 ENV PYTHONPATR=SPYTRUNPATH:/usr/local/feature/tools/lib 
 
 #dssp
-RUN chmod 777 /var/www/html/NucleicNet/utils/dssp
-#ENV PATH /var/www/html/NucleicNet/utils/dssp:${PATH}
-RUN cp /var/www/html/NucleicNet/utils/dssp /bin/
-RUN cp /var/www/html/NucleicNet/utils/dssp /var/www/html/NucleicNet/protein_RNA_interaction_package
-RUN cp /var/www/html/NucleicNet/utils/dssp /var/www/html/NucleicNet/protein_RNA_interaction_package/Scripts
-RUN cp /var/www/html/NucleicNet/utils/dssp /var/www/html/NucleicNet/protein_RNA_interaction_package/GridData
+RUN chmod 777 /var/www/html/NucleicNet/NucleicNet/utils/dssp
+#ENV PATH /var/www/html/NucleicNet/NucleicNet/utils/dssp:${PATH}
+RUN cp /var/www/html/NucleicNet/NucleicNet/utils/dssp /bin/
+RUN cp /var/www/html/NucleicNet/NucleicNet/utils/dssp /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package
+RUN cp /var/www/html/NucleicNet/NucleicNet/utils/dssp /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/Scripts
+RUN cp /var/www/html/NucleicNet/NucleicNet/utils/dssp /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/GridData
 
-RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/DL/src_productive && conda env create -f environment.yml
-#RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && sed -i "/\b\(numpy\)\b/d" py3.yml
-#RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && sed -i 's/python>=3.5/python==3.6/g' py3.yml
-#RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && sed -i 's/prody/ProDy-1.10.8.tar.gz/g' py3.yml
+RUN cd /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/DL/src_productive && conda env create -f environment.yml
+#RUN cd /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/ && sed -i "/\b\(numpy\)\b/d" py3.yml
+#RUN cd /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/ && sed -i 's/python>=3.5/python==3.6/g' py3.yml
+#RUN cd /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/ && sed -i 's/prody/ProDy-1.10.8.tar.gz/g' py3.yml
 
-RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && cat py3.yml
+RUN cd /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/ && cat py3.yml
 
-#RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && sed -i 's/- bleach==1.5.0/- bleach==1.5.0\n  - prody==1.10.6/g' py3_env.yml
-RUN cat /var/www/html/NucleicNet/protein_RNA_interaction_package/py3_env.yml
-RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && conda env create -f py3_env.yml
+RUN cd /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/ && sed -i 's/- bleach==1.5.0/- bleach==1.5.0\n  - seaborn/g' py3_env.yml
+RUN cat /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/py3_env.yml
+RUN cd /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/ && conda env create -f py3_env.yml
 
 ############################################################################################
 
@@ -175,25 +175,25 @@ RUN chown -R www-data:www-data /var/www
 RUN chmod 755 -R /var/www
 RUN chgrp -R www-data /var/www
 
-RUN git clone https://github.com/ramzan1990/NucleicNetWebServer tzzzzzzzzzzzzzzzzzzzzzzzzz
-RUN cp -a tzzzzzzzzzzzzzzzzzzzzzzzzz/. /var/www/html/
-RUN rm -rf tzzzzzzzzzzzzzzzzzzzzzzzzz
+RUN git clone https://github.com/ramzan1990/NucleicNetWebServer d2811
+RUN cp -a d2811/. /var/www/html/NucleicNet/
+RUN rm -rf d2811
 
-RUN mkdir /var/www/html/NucleicNet/protein_RNA_interaction_package/HMM_scoring
-RUN cp /var/www/html/4f3t_HMM_Model.pickle /var/www/html/NucleicNet/protein_RNA_interaction_package/HMM_scoring
+RUN mkdir /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/HMM_scoring
+RUN cp /var/www/html/NucleicNet/4f3t_HMM_Model.pickle /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/HMM_scoring
 
-RUN chmod 777 -R /var/www/html/files
+RUN chmod 777 -R /var/www/html/NucleicNet/files
 
-RUN cp /var/www/html/score.sh /var/www/html/NucleicNet/protein_RNA_interaction_package/
+RUN cp /var/www/html/NucleicNet/score.sh /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/
 
-RUN chmod 777 /var/www/html/NucleicNet/protein_RNA_interaction_package/score.sh
+RUN chmod 777 /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/score.sh
 
-RUN chmod 777 -R /var/www/html/NucleicNet/protein_RNA_interaction_package/webruns
+RUN chmod 777 -R /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/webruns
 RUN echo "3"
-RUN cp /var/www/html/commandNAAnalyseGridPrediction_legacy.sh /var/www/html/NucleicNet/protein_RNA_interaction_package/
-RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && sed -i 's/source activate py3/source activate py3\n pip install --user prody \n pip3 install --user prody /g' commandNAAnalyseGridPrediction_legacy.sh
+RUN cp /var/www/html/NucleicNet/commandNAAnalyseGridPrediction_legacy.sh /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/
+RUN cd /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/ && sed -i 's/source activate py3/source activate py3\n pip install --user prody \n pip3 install --user prody /g' commandNAAnalyseGridPrediction_legacy.sh
 
-RUN cd /var/www/html/NucleicNet/protein_RNA_interaction_package/ && cat commandNAAnalyseGridPrediction_legacy.sh
+RUN cd /var/www/html/NucleicNet/NucleicNet/protein_RNA_interaction_package/ && cat commandNAAnalyseGridPrediction_legacy.sh
 
 WORKDIR /var/www
 EXPOSE 80
