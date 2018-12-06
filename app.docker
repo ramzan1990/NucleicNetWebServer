@@ -123,6 +123,7 @@ RUN conda update pip
 
 RUN pip install --upgrade pip
 
+RUN mkdir /var/www/html/NucleicNet/
 RUN git clone https://ramzan1990:18779898aA!@github.com/lykaust15/NucleicNet temp112
 RUN cp -a temp112/. /var/www/html/NucleicNet/NucleicNet
 RUN rm -rf temp112
